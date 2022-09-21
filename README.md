@@ -1,2 +1,2 @@
-# surf_sound
+# SurfSound
 This project made for fun
