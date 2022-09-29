@@ -1,2 +1,2 @@
 # SurfSound
-This project made for fun
+### Project for SFU
