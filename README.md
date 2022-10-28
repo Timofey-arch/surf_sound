@@ -1,2 +1,2 @@
 # SurfSound
-### Project for SFU
+### Project for SibFU
