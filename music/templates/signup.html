@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" itemprop="description"
-        content="Play your playlists and favourites tracks, albums, and artists of YouTube with a Spotify styled UI" />
-    <meta name="keywords"
-        content="convert, convert playlists, transfer, syncing, smart links, free, apple music, streaming services, spotify, youtube" />
-<!--    <link rel="stylesheet" href="{% static "formStyle.css" %}">-->
-    <title>SurfSound</title>
+    {% block css %}
+	    <link rel="stylesheet" href="{% static "form.css" %}">
+    {% endblock %}
+    <title>surfsound</title>
 </head>
 <script>
     function checkPassword(form) {
@@ -23,9 +21,7 @@
         }
     }
 </script>
-
 <body>
-
     <div class="signup_body">
         <form class="login_form" method='POST' enctype="multipart/form-data">
             {% csrf_token %}
@@ -68,5 +64,4 @@
     </div>
 
 </body>
-
 </html>

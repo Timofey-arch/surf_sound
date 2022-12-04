@@ -1,8 +1,7 @@
-from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class PlaylistUser(models.Model):
+class playlist_user(models.Model):
     username = models.CharField(max_length=200)
 
     def __str__(self):
@@ -10,7 +9,7 @@ class PlaylistUser(models.Model):
 
 
 class playlist_song(models.Model):
-    user = models.ForeignKey(PlaylistUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(playlist_user, on_delete=models.CASCADE)
     song_title = models.CharField(max_length=200)
     song_youtube_id =  models.CharField(max_length=20)
     song_albumsrc = models.CharField(max_length=255)

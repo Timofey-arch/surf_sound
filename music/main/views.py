@@ -4,11 +4,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from .models import PlaylistUser
+from .models import playlist_user
 
 
 def index(request):
-    return HttpResponse("It is SurfSound, YO")
+    if request.user.is_anonymous:
+        return redirect('/login')
+    if request.method == 'POST':
+        pass
+    return render(request, 'index.html')
 
 
 def signup(request):
@@ -28,9 +32,31 @@ def signup(request):
             context['email'] = False
             return render(request,'signup.html',context)
 
-        PlaylistUser.objects.create(username=username)
-        new_user = User.objects.create_user(username, email, password)
+        playlist_user.objects.create(username=username)
+        new_user = User.objects.create_user(username,email,password)
         new_user.save()
         login(request,new_user)
         return redirect('/')
     return render(request,'signup.html',context)
+
+
+def login_auth(request):
+    if not request.user.is_anonymous:
+        return redirect('/')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        else:
+            context = {'case':False}
+            return render(request, 'login.html', context)
+    context = {'case':True}
+    return render(request, 'login.html', context)
+
+
+def logout_auth(request):
+    logout(request)
+    return redirect('/login')
