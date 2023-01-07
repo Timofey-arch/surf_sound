@@ -13,7 +13,8 @@ def index(request):
         return redirect('/login')
     if request.method == 'POST':
         pass
-    return render(request, 'index.html')
+    # Изменена стандардтная страничка после входа
+    return render(request, 'playlist.html')
 
 
 def signup(request):
